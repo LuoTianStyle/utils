@@ -20,14 +20,13 @@ export const throttle = (fn, delay) => {
  * @param {*} fn
  * @param {*} delay
  */
-export const throttle = (fn, delay) => {
-	let canRun = true;
-	return () => {
-		if (!canRun) return;
-		canRun = false;
-		setTimeout(() => {
-			fn.apply(this, arguments);
-			canRun = true;
-		}, delay);
-	};
-};
+
+export const debounce = (fn,delay) => {
+  let timeout = null;
+  return  () => {
+      clearTimeout(timeout); 
+      timeout = setTimeout(() => {
+          fn.apply(this, arguments);
+      }, delay);
+  };
+}
