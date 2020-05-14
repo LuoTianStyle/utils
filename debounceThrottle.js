@@ -5,12 +5,12 @@
  * @param {*} delay
  */
 export const throttle = (fn, delay) => {
-	let canRun = true;
+	let canRun = null;
 	return () => {
-		if (!canRun) return;
-		setTimeout(() => {
+		if (canRun) return;
+		canRun = setTimeout(() => {
 			fn.apply(this, arguments);
-			canRun = true;
+			canRun = null;
 		}, delay);
 	};
 };
